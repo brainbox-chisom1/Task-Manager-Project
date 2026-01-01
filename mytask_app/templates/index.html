@@ -1,0 +1,41 @@
+{% extends 'main.html' %} 
+{% load crispy_forms_tags %}
+{% load static %}     
+{% block content %}
+
+
+      <h2>Search</h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+
+          <input type="submit" name="" id="">
+        </form>
+    <br>
+
+<div class="task_table">
+    <table class="table">
+        <thead class="table-light">
+          <th>Task</th>
+          <th>Date Added</th>
+          <th>Set Remainder</th>
+          <th>Done</th>
+          <th>Delete</th>
+        </thead>
+        {% for task in task %}
+        <tr>
+          <td><a href="{% url 'view_task' task.id %}">{{task.task_name}}</a></td>
+          <td>{{task.date_added}}</td>
+          <td><a href="{% url 'set_remainder' task.id %}"><img src="{% static 'images/remainder1.png' %}" alt=""></a></td>
+          <td><a href="{% url 'completed_task'  %}"><img src="{% static 'images/Complete.jpg' %}" alt=""></a></td>
+          <td><a href="{% url 'delete_task' task.id %}"><img src="{% static 'images/delete.png' %}" alt="delete_task"></a></td>
+        </tr>
+        {% endfor %}
+        </table>
+      </div>
+
+<footer class="footer text-center text-muted">
+    <p>Total Completed Tasks: <strong>2</strong></p>
+</footer>
+    {% endblock content %}
+

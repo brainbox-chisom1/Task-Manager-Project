@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .update_tag  {
+            display: block;
+            display: inline;
+        }
+        .task_delete{
+            border: 1px blue solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-3 task_delete">
+    <h1>THIS ARE TASKS UNDER <strong>{{tag}}</strong> TAG CATEGORY</h1>
+    {% for task in task %}
+    {{task}}
+    {% endfor %}
+
+
+    <h2>Are you sure you want to delete it ?</h2>
+    <br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input class="btn btn-outline-danger" type="submit" value="Delete">
+        <a class="btn btn-primary submit_tag" href="/new_tag">NO</a>
+    </form>
+    </div>
+</body>
+</html>
+
+
+

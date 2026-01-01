@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<h1 class="h1">Completed Task</h1>
+<div class="task_table">
+    <table class="table">
+        <thead>
+            <th>Task</th>
+            <th>Completed Date</th>
+            <th>delete</th>
+        </thead>
+
+        {% for task in task %}
+        <tr>
+            <td>{{task.task_name}}</td>
+            <td>{{task.completed_date}}</td>
+            <td><a href="{% url 'delete_task' task.id %}"><img src="{% static 'images/delete.png' %}" alt=""></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock content %}

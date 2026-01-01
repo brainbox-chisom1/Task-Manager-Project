@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Tag</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .update_tag  {
+            display: block;
+            display: inline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container mt-3"> 
+        <br><br>
+        <form action="" method="post" class="form-control">
+            {% csrf_token %}
+            {{form}}
+
+
+            <br><br>
+            <div></div>
+                <a class="btn btn-outline-danger" href="/new_tag">Cancel</a>
+               <input class="btn btn-primary submit_tag" type="submit" name="" id=""> 
+            </div>
+            
+        </form>
+    </div>
+    
+
+</form>
+</body>
+</html>
+
+

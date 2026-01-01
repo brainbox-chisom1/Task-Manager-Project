@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+{%  load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<body>
+<div class="container my-4">
+    <div class="card p-4 mb-4">
+        <h4>Task</h4>
+        <div class="d-flex align-items-center mb-3">
+            <!-- <input class="form-check-input me-3" type="checkbox" id="taskCheck"> -->
+            <p class="mb-0 fw-semibold">{{task.task_name}}</p>
+        </div>
+        <br>
+
+        <!-- Date Added -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="bg-light rounded p-2 d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-calendar-days text-secondary"></i>
+            </div>
+            <div>
+                <p class="mb-0 text-muted small">Date Registered</p>
+                <p class="mb-0 fw-semibold">{{task.date_added}}</p>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-4">
+            <h5>Description</h5>
+            <p>{{task.description}}</p>
+        </div>
+
+        <!-- Tags -->
+        <div>
+            <h5>Tags</h5>
+            <div class="d-flex flex-wrap">
+                <span class="tag-pill">{{task.tag}}</span>
+        </div>
+
+        <div>
+            <h5>Piority</h5>
+            <div class="d-flex flex-wrap">
+                <span class="tag-pill">{{task.piority_level}}</span>
+        </div>
+    </div>
+
+{% endblock content %}
