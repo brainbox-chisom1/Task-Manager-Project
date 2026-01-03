@@ -82,6 +82,24 @@ class RemainderForm(forms.ModelForm):
         self.user = kwargs.pop('user', None)#defining the user attributes 
         super().__init__(*args, **kwargs)
 
+    date = forms.DateField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control datepicker',
+            'placeholder': 'Select date'
+        }),
+        input_formats=['%Y-%m-%d']
+    )
+
+    time = forms.TimeField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control timepicker',
+            'placeholder': 'Select time'
+        }),
+        input_formats=['%H:%M']
+    )
+
 
 
 class RegisterForm(UserCreationForm):
