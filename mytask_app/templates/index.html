@@ -27,7 +27,7 @@
           <td><a href="{% url 'view_task' task.id %}">{{task.task_name}}</a></td>
           <td>{{task.date_added}}</td>
           <td><a href="{% url 'set_remainder' task.id %}"><img src="{% static 'images/remainder1.png' %}" alt=""></a></td>
-          <td><a href="{% url 'completed_task'  %}"><img src="{% static 'images/Complete.jpg' %}" alt=""></a></td>
+          <td><a href="{% url 'completed_task'  %}"><img src="{% static 'images/complete_task.png' %}" alt=""></a></td>
           <td><a href="{% url 'delete_task' task.id %}"><img src="{% static 'images/delete.png' %}" alt="delete_task"></a></td>
         </tr>
         {% endfor %}

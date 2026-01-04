@@ -13,6 +13,9 @@ from .models import Tag, Task, Remainder
 from . import forms
 
 
+
+
+
 def login_user(request):
     if request.user.is_authenticated:
         return redirect('index')
@@ -201,3 +204,17 @@ def completed_task(request):
         task = Task.objects.filter(completed=1).values()
         
     return render(request, 'task_complete.html', {'task': task})
+
+
+def is_ten_minutes_to_due(task):
+    due_datetime = datetime.combine(
+        task.date,
+        task.time
+    )
+
+    due_datetime = timezone.make_aware(due_datetime)
+    now = timezone.now()
+
+    time_left = due_datetime - now
+
+    return timedelta(minutes=9, seconds=50) <= time_left <= timedelta(minutes=10, seconds=10)

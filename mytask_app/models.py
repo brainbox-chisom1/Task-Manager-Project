@@ -32,6 +32,7 @@ class Task(models.Model):
     completed_date = models.DateTimeField(auto_now=True)
     upcoming_task = models.IntegerField(default=0)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    remainder_sent = models.BooleanField(default=False)
 
 
     def __str__(self):

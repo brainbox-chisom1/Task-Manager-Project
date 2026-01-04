@@ -77,10 +77,28 @@ class RemainderForm(forms.ModelForm):
     class Meta:
         model = Remainder
         fields = ['task_name', 'date', 'time']
-
+        
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)#defining the user attributes 
         super().__init__(*args, **kwargs)
+
+    date = forms.DateField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control datepicker',
+            'placeholder': 'Select date'
+        }),
+        input_formats=['%Y-%m-%d']
+    )
+
+    time = forms.TimeField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control timepicker',
+            'placeholder': 'Select time'
+        }),
+        input_formats=['%H:%M']
+    )
 
 
 

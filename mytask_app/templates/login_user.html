@@ -59,15 +59,15 @@
         <input type="text" name="username" id="" placeholder="Username" />
         <input type="password" name="password" id="" placeholder="Password" />
         <input class='button' type="submit" value="Login">
+
+        <h6>
+          {% for message in messages %}
+              {{message}}
+          {% endfor %}
+        </h6>
         <small>Don't have an account <a href="{% url 'register_user' %}">register</a></small>
       </form>
     </div>
-
-    <h6>
-    {% for message in messages %}
-        {{message}}
-    {% endfor %}
-    </h6>
 
   </body>
 </html>
