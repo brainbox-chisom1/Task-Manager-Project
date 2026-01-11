@@ -90,7 +90,7 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'postgres', #name of the database
 #         'USER': 'postgres',
-#         'PASSWORD': '08143355090Ekeh',
+#         'PASSWORD': '',
 #         'HOST': 'localhost',
 #         'PORT': '5432',
 #     }
@@ -120,7 +120,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'focusintech1@gmail.com'
-EMAIL_HOST_PASSWORD = 'yujn skmo qdtm hprv'
+EMAIL_HOST_PASSWORD = ''
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
