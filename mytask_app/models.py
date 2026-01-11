@@ -12,6 +12,7 @@ class Tag(models.Model):
         return self.tag_name
 
 
+#created only for registerations of tasks and keeping users entry
 class Task(models.Model):
     """Task properties are created here"""
     importance = {
@@ -24,10 +25,6 @@ class Task(models.Model):
     description = models.TextField(max_length=1000, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     piority_level = models.CharField(max_length=6, choices=importance.items(), null=False)
-    date = models.DateField(null=True, blank=False)
-    time = models.TimeField(null=True, blank=False)
-    due_date_start = models.DateTimeField(null=True, blank=True)
-    due_date_stop = models.DateTimeField(null=True, blank=True, auto_now_add=False, auto_now=True)
     completed = models.IntegerField(default=0)#renders on the home page the completed 
     completed_date = models.DateTimeField(auto_now=True)
     upcoming_task = models.IntegerField(default=0)
@@ -39,14 +36,16 @@ class Task(models.Model):
         return f"{self.task_name}, {self.description[:12]}..."
 
 
+#Extracts tasks from Task Model and keeps record of user's tasks and send a mail once time is close to due
 class Remainder(models.Model):
     """Keeps record of the upcoming tasks and sends a notification to the email"""
     #if stop_time is close:
     task_name = models.CharField(max_length=50, null=True, blank=True)
-    date = models.DateField(null=True, blank=False)
-    time = models.TimeField(null=True, blank=False)
+    date = models.DateField(null=False, blank=True)
+    time = models.TimeField(null=False, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+    remainder_sent = models.BooleanField(default=False)
+
     def __str__(self):
         return f'task name {self.task_name}, Stop Date: {self.date}, Stop Time: {self.time}'
 

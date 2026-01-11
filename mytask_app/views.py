@@ -14,8 +14,6 @@ from . import forms
 
 
 
-
-
 def login_user(request):
     if request.user.is_authenticated:
         return redirect('index')
@@ -52,8 +50,9 @@ def logout_user(request):
 @login_required(login_url='login_user')
 def index(request):
     """the homepage and the search functionality"""
+    #filtering by owners data
     task = Task.objects.filter(owner=request.user)
-    form = forms.SearchTag(request.POST or None, user=request.user)
+    form = forms.SearchTag(request.POST or None, user=request.user)#passed user to the form so the tag form could be validated by a users data
    
     if request.method == 'POST' and form.is_valid():
         product_tag = form.cleaned_data.get('tag')# get the tag from the form submitted
@@ -73,15 +72,12 @@ def delete_task(request, id):
     else:
         return render(request, 'confirm_delete.html')
 
-# class Tag(object):
-    # """class based view"""
-    # def __init__(self, form):
-    #     self.form = forms.TagForm()
+
 
 @login_required(login_url='login_user')
 def new_tag(request):
     """create tags"""
-    tag = Tag.objects.filter(owner=request.user)
+    tag = Tag.objects.filter(owner=request.user)#filter by user
     if request.method == "POST":
         form = forms.TagForm(request.POST, user=request.user)
         if form.is_valid():
@@ -110,12 +106,13 @@ def delete_tag(request, id):
 def update_tag(request, id):
     """update an existing tag"""
     tag = get_object_or_404(Tag, id=id, owner=request.user)
-    form = forms.TagForm(instance=tag)#(tech)
+    form = forms.TagForm(instance=tag)#gets the tag instance to be updated
     if request.method == "POST":
-        form = forms.TagForm(request.POST, instance=tag)#note the instance coming from the frontend to be updated by the new passed argument
+        #note the instance coming from the frontend to be updated by the new passed argument must be added in the form below
+        form = forms.TagForm(request.POST, instance=tag)
         if form.is_valid():
             task = form.save(commit=False)
-            task.owner = request.user
+            task.owner = request.user#bind to the user attribute
             task.save()
             return redirect('new_tag')
     return render(request, 'update_tag.html', {'tag': tag, 'form': form})
@@ -165,21 +162,6 @@ def send_mail(to_email, task_name):
         [to_email],
         fail_silently=False
     )
-
-def remainder_mail(request):
-    """check the remainder table and send mail to tasks closer to 10mins or in 10mins range"""
-    #steps
-    #query the remainder table to get the objects
-    #get the time and date 
-    #combine both time stamps
-    #get the current time
-    #subtract the remainder time stamp from the current time
-    #check if the time is equals to 10mins and send a mail
-    remainder = Remainder.objects.all()
-    time = remainder.time
-    date = remainder.date
-    pass
-
 
 @login_required(login_url='login_user')
 def view_task(request, id):

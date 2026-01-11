@@ -1,6 +1,20 @@
-body {
+   body {
       background-color: #f8f9fa;
       min-height: 100vh;
+}
+
+.task_table {
+    background: #fffdf7;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.table {
+    font-size: 0.9rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fffbf2;
 }
 
 .sidebar {

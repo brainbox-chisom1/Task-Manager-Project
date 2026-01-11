@@ -2,24 +2,26 @@ from django.contrib import admin
 from .models import Task, Tag, Remainder
 #Register your models here.
 
-admin.site.register(Task)
-admin.site.register(Tag)
-admin.site.register(Remainder)
 
-# class TaskAdmin(admin.ModelAdmin):
-#     """customize the admin homepage"""
-#     list_display = ['title', 'date', 'priority']
+
+class TaskAdmin(admin.ModelAdmin):
+    """customize the admin homepage"""
+    list_display = ['task_name', 'date_added', 'piority_level', 'tag']
+    list_filter = ['tag']
  
-# class ListAdmin(admin.ModelAdmin):
-#     """customize the display of the ToDO List items"""
-#     list_display = ['name', 'tag', 'date_added']
 
-# class TagAdmin(admin.ModelAdmin):
-#     """customized list of Tags"""
-#     list_display = ['tag']
 
-# # admin.site.register(Task,TaskAdmin)
-# admin.site.register(Tag, TagAdmin)
-# admin.site.register(List, ListAdmin)
-# admin.site.site_header = 'ToDo-List'
-# admin.site.site_title = 'My ToDo-List'
+class TagAdmin(admin.ModelAdmin):
+    """customized list of Tags"""
+    list_display = ['tag_name', 'owner']#see who created each tags
+
+class RemainderAdmin(admin.ModelAdmin):
+    """show details of upcoming tasks"""
+    list_display = ['task_name', 'date', 'owner']
+    
+
+admin.site.register(Task, TaskAdmin)
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Remainder, RemainderAdmin)
+admin.site.site_header = 'Precious Task Manager'
+admin.site.site_title = 'Task Management Dashboard'

@@ -11,6 +11,7 @@ class SearchTag(forms.ModelForm):
         model = Task
         fields = ['tag']
 
+#initialize the user so i could use self.user and tags created to their users
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
@@ -33,7 +34,9 @@ class AddTask(forms.ModelForm):
 
         if len(task_name) >= 24:
             raise forms.ValidationError('Task name too long')
-            
+        
+
+        #if name already exists    
         if Task.objects.filter(
             owner=self.user,
             task_name__iexact=task_name
@@ -81,7 +84,8 @@ class RemainderForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)#defining the user attributes 
         super().__init__(*args, **kwargs)
-
+    
+    #assigning widget for the date field
     date = forms.DateField(
         required=False,
         widget=forms.TextInput(attrs={
@@ -91,17 +95,18 @@ class RemainderForm(forms.ModelForm):
         input_formats=['%Y-%m-%d']
     )
 
+    #assigning widget for the time field and 
     time = forms.TimeField(
         required=False,
         widget=forms.TextInput(attrs={
             'class': 'form-control timepicker',
             'placeholder': 'Select time'
         }),
-        input_formats=['%H:%M']
+        input_formats=['%H:%M']#setting a format that would be received 
     )
 
 
-
+#the registeration page add email
 class RegisterForm(UserCreationForm):
     class Meta: 
         model = User

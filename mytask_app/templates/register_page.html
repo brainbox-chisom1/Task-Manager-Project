@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load crispy_forms_tags %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,9 +22,9 @@
       .card {
         border-radius: 8px;
         padding: 30px;
-        width: 300px;
+        width: 450px;
       }
-      h2 {
+      h5 {
         color: blue;
         text-align: center;
         margin-bottom: 20px;
@@ -34,10 +35,9 @@
       }
       input {
         margin-bottom: 15px;
-        padding: 10px;
         border-radius: 5px;
         border: 1px solid black;
-        background-color: #d8d8d8;
+        /* background-color: #d8d8d8; */
       }
       .click {
         background-color: #1b81da;
@@ -52,30 +52,34 @@
   </head>
   <body>
     <div class="card">
-      <h2 class="h2">Register</h2>
+      <div class="d-flex align-items-center mb-4">
+        <i class="fa-solid fa-list-check fa-2xl text-primary"></i>
+        <h4 class="ms-2 fw-bold">PreciousTask</h4>
+      </div>
+      <h5>Register your account</h5>
+      
       <form method="post">
         {% csrf_token %}
         <!--Username-->
-        <div class="form-control">
-           <label for="">Username</label><br>
-          {{form.username}}
+        <!--The form attributes-->
+        <div>
+          <input type="text" name="username" class="form-control" placeholder="Username">
         </div>
-        <div class="form-control">
-            <label>Email</label>
-            <br>
-            {{form.email}}
+        <div>
+          <input type="email" name="Email" class="form-control" placeholder="Email">
+
         </div>
-        <div class="form-control">
-            <label>Password</label>
-            <br>
-            {{form.password1}}
+        <div>
+          <input type="password" name="password1" class="form-control" placeholder="password1">
         </div>
-        <div class="form-control">
-            <label>confirm password</label>
-            <br>
-            {{form.password2}}
+        <div> 
+          <input type="password" name="password2" class="form-control" placeholder="password2">
         </div>
 
+        <div>
+          <input type="submit" class="form-control click" value="Sign-up">
+
+        </div>
         {% if form.errors %}
         <div class="alert alert-danger">
         <ul class="mb-0">
@@ -87,14 +91,11 @@
         </ul>
         </div>
         {% endif %}
-
-        <input class="click" type="submit" value="Sign-up">
-
+        <div>
+          <h6>Already have an account? <span><a href="{% url 'login_user' %}">login</a></span></h6>
+        </div>
       </form>
     </div>
-
-
-        
 </body>
 </html>
 
