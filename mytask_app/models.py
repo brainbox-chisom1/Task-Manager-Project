@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models  import User
 # Create your models here.
 
-
+#this is the category section for each tasks
 class Tag(models.Model):
     """Holds the category of each task created"""
     tag_name = models.CharField(max_length=50, null=False, blank=False)
@@ -48,6 +48,21 @@ class Remainder(models.Model):
 
     def __str__(self):
         return f'task name {self.task_name}, Stop Date: {self.date}, Stop Time: {self.time}'
+    
+
+
+#stores all completed tasks with their time and date of completed inpressions    
+class Completed_task(models.Model):
+    """complete tasks are create with the time and date of completion"""
+    task = models.CharField(max_length=50, null=True, blank=True)
+    tag_name = models.CharField(max_length=50, null=True, blank=True)
+    description = models.TextField(max_length=1000, null=True, blank=True)
+    time = models.TimeField(auto_now_add=True, null=True, blank=False)
+    date = models.DateField(auto_now_add=True, null=True, blank=False)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Completed task {self.task} and date {self.date}'
 
     
 

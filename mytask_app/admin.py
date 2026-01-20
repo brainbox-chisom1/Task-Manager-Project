@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Task, Tag, Remainder
+from .models import Task, Tag, Remainder, Completed_task
 #Register your models here.
 
 
@@ -22,6 +22,7 @@ class RemainderAdmin(admin.ModelAdmin):
 
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Tag, TagAdmin)
+admin.site.register(Completed_task)
 admin.site.register(Remainder, RemainderAdmin)
 admin.site.site_header = 'Precious Task Manager'
 admin.site.site_title = 'Task Management Dashboard'

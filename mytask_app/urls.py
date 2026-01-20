@@ -14,6 +14,7 @@ urlpatterns = [
     path('remainder/<int:id>/', views.remainder, name='set_remainder'),
     path('task/<int:id>/', views.view_task, name='view_task'),
     path('upcoming_task', views.upcoming_task, name='upcoming_task'),
-    path('completed_task', views.completed_task, name='completed_task'),
+    path('complete/<int:id>/', views.complete_task, name='completed_task'),
+    path('completed_task', views.all_completed_task, name='done_task'),
     
 ]

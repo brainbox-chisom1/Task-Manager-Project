@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{%  load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<body>
+<div class="container my-4">
+    <div class="card p-4 mb-4">
+        <div class="task">
+            <h2>Task Name: {{task.task_name}}</h2>
+        </div>
+
+        <div class="desc">
+            <h3>Description</h3>
+            {{task.description}}
+        </div>
+
+        <div class="piority">
+            <h3>Piority Level</h3>
+            {{task.piority_level}}
+        </div>
+
+        <div class="decision">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h1>Are you sure you have completed this task?</h1>
+                <input type="submit" name="" id="" value="Yes">
+                <a href="/index"><button>NO</button></a>
+
+
+            </form>
+            
+
+            
+
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{%  load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<body>
+<div class="container my-4">
+    <div>
+        <div class="decision">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h1>Are you sure you have completed this task?</h1>
+                <h6>Task name: {{task.task_name}}</h6>
+                <br><br>
+                <input class="btn btn-danger" type="submit" name="" id="" value="Yes">
+                <a class="btn btn-primary" href="/">No</a>
+
+
+            </form>            
+       </div>
+
+  <br><br>
+
+    </div>
+
+{% endblock content %}
